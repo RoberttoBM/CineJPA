@@ -1,0 +1,1 @@
+GRANT EXECUTE ON sys.dbms_rls TO rb_cine_jpa;

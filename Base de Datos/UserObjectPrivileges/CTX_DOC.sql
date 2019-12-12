@@ -1,0 +1,1 @@
+GRANT EXECUTE ON ctxsys.ctx_doc TO rb_cine_jpa;
