@@ -12,17 +12,28 @@
             <h:form id="ClienteEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{clienteController.selected != null}">
-                        <p:outputLabel value="#{vista.EditClienteLabel_idcli}" for="idcli" />
-                        <p:inputText id="idcli" value="#{clienteController.selected.idcli}" title="#{vista.EditClienteTitle_idcli}" required="true" requiredMessage="#{vista.EditClienteRequiredMessage_idcli}"/>
-                        <p:outputLabel value="#{vista.EditClienteLabel_nomcli}" for="nomcli" />
-                        <p:inputText id="nomcli" value="#{clienteController.selected.nomcli}" title="#{vista.EditClienteTitle_nomcli}" required="true" requiredMessage="#{vista.EditClienteRequiredMessage_nomcli}"/>
-                        <p:outputLabel value="#{vista.EditClienteLabel_apecli}" for="apecli" />
-                        <p:inputText id="apecli" value="#{clienteController.selected.apecli}" title="#{vista.EditClienteTitle_apecli}" required="true" requiredMessage="#{vista.EditClienteRequiredMessage_apecli}"/>
-                        <p:outputLabel value="#{vista.EditClienteLabel_dniper}" for="dniper" />
-                        <p:inputText id="dniper" value="#{clienteController.selected.dniper}" title="#{vista.EditClienteTitle_dniper}" required="true" requiredMessage="#{vista.EditClienteRequiredMessage_dniper}"/>
-                        <p:outputLabel value="#{vista.EditClienteLabel_edacli}" for="edacli" />
-                        <p:inputText id="edacli" value="#{clienteController.selected.edacli}" title="#{vista.EditClienteTitle_edacli}" required="true" requiredMessage="#{vista.EditClienteRequiredMessage_edacli}"/>
-                        <p:outputLabel value="#{vista.EditClienteLabel_dircli}" for="dircli" />
+                        <p:outputLabel value="Nombres:" for="nomcli" />
+                        <p:inputText id="nomcli" value="#{clienteController.selected.nomcli}" title="#{vista.EditClienteTitle_nomcli}" required="true" requiredMessage="#{vista.EditClienteRequiredMessage_nomcli}">
+                            <p:keyFilter regEx="/[a-z]/ /"/>  
+                        </p:inputText>
+
+                        <p:outputLabel value="Apellidos:" for="apecli" />
+                        <p:inputText id="apecli" value="#{clienteController.selected.apecli}" title="#{vista.EditClienteTitle_apecli}" required="true" requiredMessage="#{vista.EditClienteRequiredMessage_apecli}">
+                            <p:keyFilter regEx="/[a-z]/ /"/>  
+                        </p:inputText>
+
+
+                        <p:outputLabel value="Nro de DNI:" for="dniper" />
+                        <p:inputText id="dniper" maxlength="8" value="#{clienteController.selected.dniper}" title="#{vista.EditClienteTitle_dniper}" required="true" requiredMessage="#{vista.EditClienteRequiredMessage_dniper}">
+                            <p:keyFilter regEx="/[0-9]/"/>  
+                        </p:inputText>
+
+                        <p:outputLabel value="Edad" for="edacli" />
+                        <p:inputText id="edacli" maxlength="2" value="#{clienteController.selected.edacli}" title="#{vista.EditClienteTitle_edacli}" required="true" requiredMessage="#{vista.EditClienteRequiredMessage_edacli}">
+                            <p:keyFilter regEx="/[0-9]/"/>
+                        </p:inputText>
+
+                        <p:outputLabel value="Dirección" for="dircli" />
                         <p:inputText id="dircli" value="#{clienteController.selected.dircli}" title="#{vista.EditClienteTitle_dircli}" required="true" requiredMessage="#{vista.EditClienteRequiredMessage_dircli}"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{clienteController.update}" value="#{vista.Save}" update="display,:ClienteListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ClienteEditDialog');"/>

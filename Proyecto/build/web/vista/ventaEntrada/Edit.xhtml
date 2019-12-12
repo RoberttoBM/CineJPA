@@ -12,40 +12,55 @@
             <h:form id="VentaEntradaEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{ventaEntradaController.selected != null}">
-                        <p:outputLabel value="#{vista.EditVentaEntradaLabel_ident}" for="ident" />
-                        <p:inputText id="ident" value="#{ventaEntradaController.selected.ident}" title="#{vista.EditVentaEntradaTitle_ident}" required="true" requiredMessage="#{vista.EditVentaEntradaRequiredMessage_ident}"/>
-                        <p:outputLabel value="#{vista.EditVentaEntradaLabel_importe}" for="importe" />
-                        <p:inputText id="importe" value="#{ventaEntradaController.selected.importe}" title="#{vista.EditVentaEntradaTitle_importe}" required="true" requiredMessage="#{vista.EditVentaEntradaRequiredMessage_importe}"/>
-                        <p:outputLabel value="#{vista.EditVentaEntradaLabel_fecvent}" for="fecvent" />
-                        <p:calendar id="fecvent" pattern="MM/dd/yyyy HH:mm:ss" value="#{ventaEntradaController.selected.fecvent}" title="#{vista.EditVentaEntradaTitle_fecvent}"  showOn="button"/>
-                        <p:outputLabel value="#{vista.EditVentaEntradaLabel_clienteIdcli}" for="clienteIdcli" />
+
+                        <p:outputLabel value="Fecha de Venta:" for="fecvent" />
+                        <p:calendar id="fecvent" pattern="dd/MM/yyyy" value="#{ventaEntradaController.selected.fecvent}" title="#{vista.EditVentaEntradaTitle_fecvent}"  showOn="button"/>
+
+                        <p:outputLabel value="Cliente:" for="clienteIdcli" />
                         <p:selectOneMenu id="clienteIdcli" value="#{ventaEntradaController.selected.clienteIdcli}" required="true" requiredMessage="#{vista.EditVentaEntradaRequiredMessage_clienteIdcli}">
                             <f:selectItem itemLabel="#{vista.SelectOneMessage}"/>
                             <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
                                            var="clienteIdcliItem"
+                                           itemLabel="#{clienteIdcliItem.nomcli} #{clienteIdcliItem.apecli}"
                                            itemValue="#{clienteIdcliItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{vista.EditVentaEntradaLabel_peliculaIdpel}" for="peliculaIdpel" />
+
+                        <p:outputLabel value="Película:" for="peliculaIdpel" />
                         <p:selectOneMenu id="peliculaIdpel" value="#{ventaEntradaController.selected.peliculaIdpel}" >
                             <f:selectItem itemLabel="#{vista.SelectOneMessage}"/>
                             <f:selectItems value="#{peliculaController.itemsAvailableSelectOne}"
                                            var="peliculaIdpelItem"
+                                           itemLabel="#{peliculaIdpelItem.nompel}"
                                            itemValue="#{peliculaIdpelItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{vista.EditVentaEntradaLabel_personaIdper}" for="personaIdper" />
+
+                        <p:outputLabel value="Empleado:" for="personaIdper" />
                         <p:selectOneMenu id="personaIdper" value="#{ventaEntradaController.selected.personaIdper}" required="true" requiredMessage="#{vista.EditVentaEntradaRequiredMessage_personaIdper}">
                             <f:selectItem itemLabel="#{vista.SelectOneMessage}"/>
                             <f:selectItems value="#{personaController.itemsAvailableSelectOne}"
                                            var="personaIdperItem"
+                                           itemLabel="#{personaIdperItem.nomper} #{personaIdperItem.apeper}"
                                            itemValue="#{personaIdperItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{vista.EditVentaEntradaLabel_salaIdsal}" for="salaIdsal" />
+                        <p:outputLabel value="Nro de Sala:" for="salaIdsal" />
                         <p:selectOneMenu id="salaIdsal" value="#{ventaEntradaController.selected.salaIdsal}" required="true" requiredMessage="#{vista.EditVentaEntradaRequiredMessage_salaIdsal}">
                             <f:selectItem itemLabel="#{vista.SelectOneMessage}"/>
                             <f:selectItems value="#{salaController.itemsAvailableSelectOne}"
                                            var="salaIdsalItem"
+                                           itemLabel="#{salaIdsalItem.numsal}"
                                            itemValue="#{salaIdsalItem}"/>
                         </p:selectOneMenu>
+
+                        <p:outputLabel value="Importe Total:" for="importe" />
+                        <p:inputNumber id="importe" symbol="S/." value="#{ventaEntradaController.selected.importe}" title="#{vista.EditVentaEntradaTitle_importe}" required="true" requiredMessage="#{vista.EditVentaEntradaRequiredMessage_importe}"/>
+
+                        <p:outputLabel value="Cantidad de Boletos:" for="cantidad"/>
+                        <p:inputText id="cantidad" maxlength="2" value="#{ventaEntradaController.selected.cantidad}" >
+                            <p:keyFilter regEx="/[0-9]/"  />
+                        </p:inputText>
+                            
+
+
                     </p:panelGrid>
                     <p:commandButton actionListener="#{ventaEntradaController.update}" value="#{vista.Save}" update="display,:VentaEntradaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'VentaEntradaEditDialog');"/>
                     <p:commandButton value="#{vista.Cancel}" onclick="VentaEntradaEditDialog.hide()"/>

@@ -53,18 +53,27 @@ public class VentaEntrada implements Serializable {
     @NotNull
     @Column(name = "IMPORTE")
     private BigDecimal importe;
+    
     @Column(name = "FECVENT")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecvent;
+    
+    @Column(name = "CANTIDAD")
+    @NotNull
+    private int cantidad;
+    
     @JoinColumn(name = "CLIENTE_IDCLI", referencedColumnName = "IDCLI")
     @ManyToOne(optional = false)
     private Cliente clienteIdcli;
+    
     @JoinColumn(name = "PELICULA_IDPEL", referencedColumnName = "IDPEL")
     @ManyToOne
     private Pelicula peliculaIdpel;
+    
     @JoinColumn(name = "PERSONA_IDPER", referencedColumnName = "IDPER")
     @ManyToOne(optional = false)
     private Persona personaIdper;
+    
     @JoinColumn(name = "SALA_IDSAL", referencedColumnName = "IDSAL")
     @ManyToOne(optional = false)
     private Sala salaIdsal;
@@ -136,6 +145,16 @@ public class VentaEntrada implements Serializable {
     public void setSalaIdsal(Sala salaIdsal) {
         this.salaIdsal = salaIdsal;
     }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+    
+    
 
     @Override
     public int hashCode() {

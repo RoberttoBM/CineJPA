@@ -8,18 +8,29 @@
 
     <ui:composition>
 
-        <p:dialog id="PeliculaCreateDlg" widgetVar="PeliculaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vista.CreatePeliculaTitle}">
+        <p:dialog id="PeliculaCreateDlg" widgetVar="PeliculaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="REGISTRAR NUEVA PELICULA:">
             <h:form id="PeliculaCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{peliculaController.selected != null}">
-                        <p:outputLabel value="#{vista.CreatePeliculaLabel_nompel}" for="nompel" />
-                        <p:inputText id="nompel" value="#{peliculaController.selected.nompel}" title="#{vista.CreatePeliculaTitle_nompel}" required="true" requiredMessage="#{vista.CreatePeliculaRequiredMessage_nompel}"/>
-                        <p:outputLabel value="#{vista.CreatePeliculaLabel_catpel}" for="catpel" />
-                        <p:inputText id="catpel" value="#{peliculaController.selected.catpel}" title="#{vista.CreatePeliculaTitle_catpel}" required="true" requiredMessage="#{vista.CreatePeliculaRequiredMessage_catpel}"/>
-                        <p:outputLabel value="#{vista.CreatePeliculaLabel_fecest}" for="fecest" />
-                        <p:calendar id="fecest" pattern="MM/dd/yyyy HH:mm:ss" value="#{peliculaController.selected.fecest}" title="#{vista.EditPeliculaTitle_fecest}" required="true" requiredMessage="#{vista.EditPeliculaRequiredMessage_fecest}" showOn="button"/>
-                        <p:outputLabel value="#{vista.CreatePeliculaLabel_apple}" for="apple" />
-                        <p:inputText id="apple" value="#{peliculaController.selected.apple}" title="#{vista.CreatePeliculaTitle_apple}" required="true" requiredMessage="#{vista.CreatePeliculaRequiredMessage_apple}"/>
+                        <p:outputLabel value="Nombre:" for="nompel" />
+                        <p:inputText id="nompel" value="#{peliculaController.selected.nompel}" title="#{vista.CreatePeliculaTitle_nompel}" required="true" requiredMessage="#{vista.CreatePeliculaRequiredMessage_nompel}">
+                            <p:keyFilter regEx="/[a-z]/"/>
+                        </p:inputText>
+                        
+                        <p:outputLabel value="Categoría:" for="catpel" />
+                        <p:inputText id="catpel" value="#{peliculaController.selected.catpel}" title="#{vista.CreatePeliculaTitle_catpel}" required="true" requiredMessage="#{vista.CreatePeliculaRequiredMessage_catpel}">
+                        <p:keyFilter regEx="/[a-z]/" />
+                        </p:inputText>
+                        
+                        <p:outputLabel value="Estreno:" for="fecest" />
+                        <p:calendar id="fecest" pattern="dd/MM/yyyy" value="#{peliculaController.selected.fecest}" title="#{vista.EditPeliculaTitle_fecest}" required="true" requiredMessage="#{vista.EditPeliculaRequiredMessage_fecest}" showOn="button"/>
+                       
+                        <p:outputLabel value="Apto para:" for="apple" />
+                        <p:selectOneMenu  id="apple" value="#{peliculaController.selected.apple}">
+                            <f:selectItem itemLabel="ATP" itemValue="ATP"/>
+                            <f:selectItem itemLabel="+14" itemValue="+14"/>
+                            <f:selectItem itemLabel="+17" itemValue="+17"/>
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{peliculaController.create}" value="#{vista.Save}" update="display,:PeliculaListForm:datalist,:growl" oncomplete="handleSubmit(args,'PeliculaCreateDialog');"/>
                     <p:commandButton value="#{vista.Cancel}" onclick="PeliculaCreateDialog.hide()"/>

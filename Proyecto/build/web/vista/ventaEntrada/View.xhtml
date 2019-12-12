@@ -12,22 +12,26 @@
             <h:form id="VentaEntradaViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{ventaEntradaController.selected != null}">
-                        <h:outputText value="#{vista.ViewVentaEntradaLabel_ident}"/>
-                        <h:outputText value="#{ventaEntradaController.selected.ident}" title="#{vista.ViewVentaEntradaTitle_ident}"/>
-                        <h:outputText value="#{vista.ViewVentaEntradaLabel_importe}"/>
-                        <h:outputText value="#{ventaEntradaController.selected.importe}" title="#{vista.ViewVentaEntradaTitle_importe}"/>
+
                         <h:outputText value="#{vista.ViewVentaEntradaLabel_fecvent}"/>
                         <h:outputText value="#{ventaEntradaController.selected.fecvent}" title="#{vista.ViewVentaEntradaTitle_fecvent}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
                         </h:outputText>
-                        <h:outputText value="#{vista.ViewVentaEntradaLabel_clienteIdcli}"/>
-                        <h:outputText value="#{ventaEntradaController.selected.clienteIdcli}" title="#{vista.ViewVentaEntradaTitle_clienteIdcli}"/>
-                        <h:outputText value="#{vista.ViewVentaEntradaLabel_peliculaIdpel}"/>
-                        <h:outputText value="#{ventaEntradaController.selected.peliculaIdpel}" title="#{vista.ViewVentaEntradaTitle_peliculaIdpel}"/>
-                        <h:outputText value="#{vista.ViewVentaEntradaLabel_personaIdper}"/>
-                        <h:outputText value="#{ventaEntradaController.selected.personaIdper}" title="#{vista.ViewVentaEntradaTitle_personaIdper}"/>
-                        <h:outputText value="#{vista.ViewVentaEntradaLabel_salaIdsal}"/>
-                        <h:outputText value="#{ventaEntradaController.selected.salaIdsal}" title="#{vista.ViewVentaEntradaTitle_salaIdsal}"/>
+
+                        <h:outputText value="Cliente:"/>
+                        <h:outputText value="#{ventaEntradaController.selected.clienteIdcli.nomcli} #{ventaEntradaController.selected.clienteIdcli.apecli}"/>
+
+                        <h:outputText value="Película"/>
+                        <h:outputText value="#{ventaEntradaController.selected.peliculaIdpel.nompel}"/>
+
+                        <h:outputText value="Empleado:"/>
+                        <h:outputText value="#{ventaEntradaController.selected.personaIdper.nomper} #{ventaEntradaController.selected.personaIdper.apeper}"/>
+
+                        <h:outputText value="Nro de Sala:"/>
+                        <h:outputText value="#{ventaEntradaController.selected.salaIdsal.numsal}"/>
+
+                        <h:outputText value="Importe de Venta:"/>
+                        <h:outputText value="S/. #{ventaEntradaController.selected.importe}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{vista.Close}" onclick="VentaEntradaViewDialog.hide()"/>
                 </h:panelGroup>

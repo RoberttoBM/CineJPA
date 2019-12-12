@@ -12,14 +12,17 @@
             <h:form id="SalaEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{salaController.selected != null}">
-                        <p:outputLabel value="#{vista.EditSalaLabel_idsal}" for="idsal" />
-                        <p:inputText id="idsal" value="#{salaController.selected.idsal}" title="#{vista.EditSalaTitle_idsal}" required="true" requiredMessage="#{vista.EditSalaRequiredMessage_idsal}"/>
                         <p:outputLabel value="#{vista.EditSalaLabel_numsal}" for="numsal" />
                         <p:inputText id="numsal" value="#{salaController.selected.numsal}" title="#{vista.EditSalaTitle_numsal}" required="true" requiredMessage="#{vista.EditSalaRequiredMessage_numsal}"/>
+
                         <p:outputLabel value="#{vista.EditSalaLabel_capsal}" for="capsal" />
                         <p:inputText id="capsal" value="#{salaController.selected.capsal}" title="#{vista.EditSalaTitle_capsal}" required="true" requiredMessage="#{vista.EditSalaRequiredMessage_capsal}"/>
+
                         <p:outputLabel value="#{vista.EditSalaLabel_estsal}" for="estsal" />
-                        <p:inputText id="estsal" value="#{salaController.selected.estsal}" title="#{vista.EditSalaTitle_estsal}" required="true" requiredMessage="#{vista.EditSalaRequiredMessage_estsal}"/>
+                        <p:selectOneMenu id="estsal" value="#{salaController.selected.estsal}" title="#{vista.EditSalaTitle_estsal}" required="true" requiredMessage="#{vista.EditSalaRequiredMessage_estsal}">
+                            <f:selectItem itemValue="Activo" itemLabel="Activo"/>
+                            <f:selectItem itemValue="Inactivo" itemLabel="Inactivo"/>
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{salaController.update}" value="#{vista.Save}" update="display,:SalaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SalaEditDialog');"/>
                     <p:commandButton value="#{vista.Cancel}" onclick="SalaEditDialog.hide()"/>

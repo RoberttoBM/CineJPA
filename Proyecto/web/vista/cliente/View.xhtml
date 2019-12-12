@@ -8,21 +8,19 @@
 
     <ui:composition>
 
-        <p:dialog id="ClienteViewDlg" widgetVar="ClienteViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vista.ViewClienteTitle}">
+        <p:dialog id="ClienteViewDlg" widgetVar="ClienteViewDialog" modal="true" resizable="false" appendTo="@(body)" header="DATOS DEL CLIENTE:">
             <h:form id="ClienteViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{clienteController.selected != null}">
-                        <h:outputText value="#{vista.ViewClienteLabel_idcli}"/>
-                        <h:outputText value="#{clienteController.selected.idcli}" title="#{vista.ViewClienteTitle_idcli}"/>
-                        <h:outputText value="#{vista.ViewClienteLabel_nomcli}"/>
+                        <h:outputText value="Nombres:"/>
                         <h:outputText value="#{clienteController.selected.nomcli}" title="#{vista.ViewClienteTitle_nomcli}"/>
-                        <h:outputText value="#{vista.ViewClienteLabel_apecli}"/>
+                        <h:outputText value="Apellidos:"/>
                         <h:outputText value="#{clienteController.selected.apecli}" title="#{vista.ViewClienteTitle_apecli}"/>
-                        <h:outputText value="#{vista.ViewClienteLabel_dniper}"/>
+                        <h:outputText value="Dirección:"/>
                         <h:outputText value="#{clienteController.selected.dniper}" title="#{vista.ViewClienteTitle_dniper}"/>
-                        <h:outputText value="#{vista.ViewClienteLabel_edacli}"/>
+                        <h:outputText value="Edad:"/>
                         <h:outputText value="#{clienteController.selected.edacli}" title="#{vista.ViewClienteTitle_edacli}"/>
-                        <h:outputText value="#{vista.ViewClienteLabel_dircli}"/>
+                        <h:outputText value="Dirección:"/>
                         <h:outputText value="#{clienteController.selected.dircli}" title="#{vista.ViewClienteTitle_dircli}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{vista.Close}" onclick="ClienteViewDialog.hide()"/>

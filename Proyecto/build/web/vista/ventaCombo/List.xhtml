@@ -27,49 +27,51 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
+
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{vista.ListVentaComboTitle_idcom}"/>
+                                <h:outputText value="FECHA DE VENTA:"/>
                             </f:facet>
-                            <h:outputText value="#{item.idcom}"/>
+                            <h:outputText value="#{item.fecvent}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
                         </p:column>
+
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{vista.ListVentaComboTitle_tipcom}"/>
+                                <h:outputText value="CLIENTE"/>
+                            </f:facet>
+                            <h:outputText value="#{item.clienteIdcli.nomcli} #{item.clienteIdcli.apecli}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="COMBO:"/>
                             </f:facet>
                             <h:outputText value="#{item.tipcom}"/>
                         </p:column>
+
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{vista.ListVentaComboTitle_cancom}"/>
+                                <h:outputText value="CANTIDAD"/>
                             </f:facet>
                             <h:outputText value="#{item.cancom}"/>
                         </p:column>
+
+
+
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{vista.ListVentaComboTitle_importe}"/>
+                                <h:outputText value="IMPORTE DE VENTA:"/>
                             </f:facet>
                             <h:outputText value="#{item.importe}"/>
                         </p:column>
+
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{vista.ListVentaComboTitle_fecvent}"/>
+                                <h:outputText value="EMPLEADO:"/>
                             </f:facet>
-                            <h:outputText value="#{item.fecvent}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{vista.ListVentaComboTitle_clienteIdcli}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.clienteIdcli}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{vista.ListVentaComboTitle_personaIdper}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.personaIdper}"/>
+                            <h:outputText value="#{item.personaIdper.nomper} #{item.personaIdper.apeper}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{vista.Create}" actionListener="#{ventaComboController.prepareCreate}" update=":VentaComboCreateForm" oncomplete="PF('VentaComboCreateDialog').show()"/>

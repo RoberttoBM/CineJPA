@@ -58,7 +58,6 @@ public class Sala implements Serializable {
     private short capsal;
     
     @Basic(optional = false)
-    @NotNull
     @Column(name = "ESTSAL")
     private Character estsal;
     

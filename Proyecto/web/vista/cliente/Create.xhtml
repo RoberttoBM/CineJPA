@@ -8,21 +8,32 @@
 
     <ui:composition>
 
-        <p:dialog id="ClienteCreateDlg" widgetVar="ClienteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vista.CreateClienteTitle}">
+        <p:dialog id="ClienteCreateDlg" widgetVar="ClienteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Registrar nuevo cliente">
             <h:form id="ClienteCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{clienteController.selected != null}">
-                        <p:outputLabel value="#{vista.CreateClienteLabel_idcli}" for="idcli" />
-                        <p:inputText id="idcli" value="#{clienteController.selected.idcli}" title="#{vista.CreateClienteTitle_idcli}" required="true" requiredMessage="#{vista.CreateClienteRequiredMessage_idcli}"/>
-                        <p:outputLabel value="#{vista.CreateClienteLabel_nomcli}" for="nomcli" />
-                        <p:inputText id="nomcli" value="#{clienteController.selected.nomcli}" title="#{vista.CreateClienteTitle_nomcli}" required="true" requiredMessage="#{vista.CreateClienteRequiredMessage_nomcli}"/>
-                        <p:outputLabel value="#{vista.CreateClienteLabel_apecli}" for="apecli" />
-                        <p:inputText id="apecli" value="#{clienteController.selected.apecli}" title="#{vista.CreateClienteTitle_apecli}" required="true" requiredMessage="#{vista.CreateClienteRequiredMessage_apecli}"/>
-                        <p:outputLabel value="#{vista.CreateClienteLabel_dniper}" for="dniper" />
-                        <p:inputText id="dniper" value="#{clienteController.selected.dniper}" title="#{vista.CreateClienteTitle_dniper}" required="true" requiredMessage="#{vista.CreateClienteRequiredMessage_dniper}"/>
-                        <p:outputLabel value="#{vista.CreateClienteLabel_edacli}" for="edacli" />
-                        <p:inputText id="edacli" value="#{clienteController.selected.edacli}" title="#{vista.CreateClienteTitle_edacli}" required="true" requiredMessage="#{vista.CreateClienteRequiredMessage_edacli}"/>
-                        <p:outputLabel value="#{vista.CreateClienteLabel_dircli}" for="dircli" />
+
+                        <p:outputLabel value="Nombres:" for="nomcli" />
+                        <p:inputText id="nomcli" value="#{clienteController.selected.nomcli}" title="#{vista.CreateClienteTitle_nomcli}" required="true" requiredMessage="#{vista.CreateClienteRequiredMessage_nomcli}">
+                            <p:keyFilter regEx="/[a-z]/ /"/>  
+                        </p:inputText>
+
+                        <p:outputLabel value="Apellidos:" for="apecli" />
+                        <p:inputText id="apecli" value="#{clienteController.selected.apecli}" title="#{vista.CreateClienteTitle_apecli}" required="true" requiredMessage="#{vista.CreateClienteRequiredMessage_apecli}">
+                            <p:keyFilter regEx="/[a-z]/ /"/>  
+                        </p:inputText>
+
+                        <p:outputLabel value="Nro de DNI:" for="dniper" />
+                        <p:inputText id="dniper" maxlength="8" value="#{clienteController.selected.dniper}" title="#{vista.CreateClienteTitle_dniper}" required="true" requiredMessage="#{vista.CreateClienteRequiredMessage_dniper}">
+                            <p:keyFilter regEx="/[0-9]/"/> <!--con primefaces 7.0-->
+                        </p:inputText>
+
+                        <p:outputLabel value="Edad:" for="edacli" />
+                        <p:inputText id="edacli" maxlength="2" value="#{clienteController.selected.edacli}" title="#{vista.CreateClienteTitle_edacli}" required="true" requiredMessage="#{vista.CreateClienteRequiredMessage_edacli}">
+                            <p:keyFilter regEx="/[0-9]/"/>
+                        </p:inputText>
+
+                        <p:outputLabel value="Dirección:" for="dircli" />
                         <p:inputText id="dircli" value="#{clienteController.selected.dircli}" title="#{vista.CreateClienteTitle_dircli}" required="true" requiredMessage="#{vista.CreateClienteRequiredMessage_dircli}"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{clienteController.create}" value="#{vista.Save}" update="display,:ClienteListForm:datalist,:growl" oncomplete="handleSubmit(args,'ClienteCreateDialog');"/>

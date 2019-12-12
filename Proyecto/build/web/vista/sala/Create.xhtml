@@ -8,18 +8,21 @@
 
     <ui:composition>
 
-        <p:dialog id="SalaCreateDlg" widgetVar="SalaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vista.CreateSalaTitle}">
+        <p:dialog id="SalaCreateDlg" widgetVar="SalaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="REGISTRAR NUEVA SALA:">
             <h:form id="SalaCreateForm">
-                <h:panelGroup id="display">
+                <h:panelGroup id="display" >
                     <p:panelGrid columns="2" rendered="#{salaController.selected != null}">
-                        <p:outputLabel value="#{vista.CreateSalaLabel_idsal}" for="idsal" />
-                        <p:inputText id="idsal" value="#{salaController.selected.idsal}" title="#{vista.CreateSalaTitle_idsal}" required="true" requiredMessage="#{vista.CreateSalaRequiredMessage_idsal}"/>
-                        <p:outputLabel value="#{vista.CreateSalaLabel_numsal}" for="numsal" />
+                        <p:outputLabel value="Nro de Sala:" for="numsal" />
                         <p:inputText id="numsal" value="#{salaController.selected.numsal}" title="#{vista.CreateSalaTitle_numsal}" required="true" requiredMessage="#{vista.CreateSalaRequiredMessage_numsal}"/>
-                        <p:outputLabel value="#{vista.CreateSalaLabel_capsal}" for="capsal" />
+
+                        <p:outputLabel value="Aforo:" for="capsal" />
                         <p:inputText id="capsal" value="#{salaController.selected.capsal}" title="#{vista.CreateSalaTitle_capsal}" required="true" requiredMessage="#{vista.CreateSalaRequiredMessage_capsal}"/>
-                        <p:outputLabel value="#{vista.CreateSalaLabel_estsal}" for="estsal" />
-                        <p:inputText id="estsal" value="#{salaController.selected.estsal}" title="#{vista.CreateSalaTitle_estsal}" required="true" requiredMessage="#{vista.CreateSalaRequiredMessage_estsal}"/>
+
+                        <p:outputLabel for="estsal" value="Estado:"/>
+                            <p:selectOneMenu id="estsal" value="#{salaController.selected.estsal}">
+                                <f:selectItem itemLabel="Activo" itemValue="Activo"/>
+                                <f:selectItem itemLabel="Inactivo" itemValue="Inactivo"/>
+                            </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{salaController.create}" value="#{vista.Save}" update="display,:SalaListForm:datalist,:growl" oncomplete="handleSubmit(args,'SalaCreateDialog');"/>
                     <p:commandButton value="#{vista.Cancel}" onclick="SalaCreateDialog.hide()"/>

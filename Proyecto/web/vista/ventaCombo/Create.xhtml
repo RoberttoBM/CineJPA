@@ -12,24 +12,39 @@
             <h:form id="VentaComboCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{ventaComboController.selected != null}">
-                        <p:outputLabel value="#{vista.CreateVentaComboLabel_tipcom}" for="tipcom" />
-                        <p:inputText id="tipcom" value="#{ventaComboController.selected.tipcom}" title="#{vista.CreateVentaComboTitle_tipcom}" required="true" requiredMessage="#{vista.CreateVentaComboRequiredMessage_tipcom}"/>
-                        <p:outputLabel value="#{vista.CreateVentaComboLabel_cancom}" for="cancom" />
+                        <p:outputLabel value="Combo:" for="tipcom" />
+                        <p:selectOneMenu id="tipcom" value="#{ventaComboController.selected.tipcom}">
+                            <f:selectItem itemValue="Combo familiar" itemLabel="Combo familiar"/>
+                            <f:selectItem itemValue="Combo con la pareja" itemLabel="Combo con la pareja"/>
+                            <f:selectItem itemValue="Combo con los amigos 1" itemLabel="Combo con los amigos 1"/>
+                            <f:selectItem itemValue="Combo individual" itemLabel="Combo individual"/>
+                            <f:selectItem itemValue="Combo con la pareja 2" itemLabel="Combo con la pareja 2"/>
+                            <f:selectItem itemValue="Combo con los amigos 2" itemLabel="Combo con los amigos 2"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="Cantidad" for="cancom" />
                         <p:inputText id="cancom" value="#{ventaComboController.selected.cancom}" title="#{vista.CreateVentaComboTitle_cancom}" required="true" requiredMessage="#{vista.CreateVentaComboRequiredMessage_cancom}"/>
-                        <p:outputLabel value="#{vista.CreateVentaComboLabel_importe}" for="importe" />
+
+                        <p:outputLabel value="Importe:" for="importe" />
                         <p:inputText id="importe" value="#{ventaComboController.selected.importe}" title="#{vista.CreateVentaComboTitle_importe}" required="true" requiredMessage="#{vista.CreateVentaComboRequiredMessage_importe}"/>
-                        <p:outputLabel value="#{vista.CreateVentaComboLabel_fecvent}" for="fecvent" />
-                        <p:calendar id="fecvent" pattern="MM/dd/yyyy HH:mm:ss" value="#{ventaComboController.selected.fecvent}" title="#{vista.EditVentaComboTitle_fecvent}"  showOn="button"/>
-                        <p:outputLabel value="#{vista.CreateVentaComboLabel_clienteIdcli}" for="clienteIdcli" />
+
+                        <p:outputLabel value="Fecha de Venta:" for="fecvent" />
+                        <p:calendar id="fecvent" pattern="dd/MM/yyyy" value="#{ventaComboController.selected.fecvent}" title="#{vista.EditVentaComboTitle_fecvent}"  showOn="button"/>
+
+
+                        <p:outputLabel value="Cliente:" for="clienteIdcli" />
                         <p:selectOneMenu id="clienteIdcli" value="#{ventaComboController.selected.clienteIdcli}" required="true" requiredMessage="#{vista.EditVentaComboRequiredMessage_clienteIdcli}">
                             <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
                                            var="clienteIdcliItem"
+                                           itemLabel="#{clienteIdcliItem.nomcli} #{clienteIdcliItem.apecli}"
                                            itemValue="#{clienteIdcliItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{vista.CreateVentaComboLabel_personaIdper}" for="personaIdper" />
+
+                        <p:outputLabel value="Empleado:" for="personaIdper" />
                         <p:selectOneMenu id="personaIdper" value="#{ventaComboController.selected.personaIdper}" required="true" requiredMessage="#{vista.EditVentaComboRequiredMessage_personaIdper}">
                             <f:selectItems value="#{personaController.itemsAvailableSelectOne}"
                                            var="personaIdperItem"
+                                           itemLabel="#{personaIdperItem.nomper} #{personaIdperItem.apeper}"
                                            itemValue="#{personaIdperItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
