@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{vista.ListVentaComboTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="VentaComboListForm">
+                <p:panel header="#{vista.ListVentaComboTitle}">
+                    <p:dataTable id="datalist" value="#{ventaComboController.items}" var="item"
+                                 selectionMode="single" selection="#{ventaComboController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idcom}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{vista.ListVentaComboTitle_idcom}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idcom}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{vista.ListVentaComboTitle_tipcom}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipcom}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{vista.ListVentaComboTitle_cancom}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cancom}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{vista.ListVentaComboTitle_importe}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.importe}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{vista.ListVentaComboTitle_fecvent}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecvent}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{vista.ListVentaComboTitle_clienteIdcli}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.clienteIdcli}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{vista.ListVentaComboTitle_personaIdper}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.personaIdper}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{vista.Create}" actionListener="#{ventaComboController.prepareCreate}" update=":VentaComboCreateForm" oncomplete="PF('VentaComboCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{vista.View}" update=":VentaComboViewForm" oncomplete="PF('VentaComboViewDialog').show()" disabled="#{empty ventaComboController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{vista.Edit}" update=":VentaComboEditForm" oncomplete="PF('VentaComboEditDialog').show()" disabled="#{empty ventaComboController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{vista.Delete}" actionListener="#{ventaComboController.destroy}" update=":growl,datalist" disabled="#{empty ventaComboController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

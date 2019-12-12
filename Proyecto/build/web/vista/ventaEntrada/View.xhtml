@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VentaEntradaViewDlg" widgetVar="VentaEntradaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vista.ViewVentaEntradaTitle}">
+            <h:form id="VentaEntradaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ventaEntradaController.selected != null}">
+                        <h:outputText value="#{vista.ViewVentaEntradaLabel_ident}"/>
+                        <h:outputText value="#{ventaEntradaController.selected.ident}" title="#{vista.ViewVentaEntradaTitle_ident}"/>
+                        <h:outputText value="#{vista.ViewVentaEntradaLabel_importe}"/>
+                        <h:outputText value="#{ventaEntradaController.selected.importe}" title="#{vista.ViewVentaEntradaTitle_importe}"/>
+                        <h:outputText value="#{vista.ViewVentaEntradaLabel_fecvent}"/>
+                        <h:outputText value="#{ventaEntradaController.selected.fecvent}" title="#{vista.ViewVentaEntradaTitle_fecvent}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{vista.ViewVentaEntradaLabel_clienteIdcli}"/>
+                        <h:outputText value="#{ventaEntradaController.selected.clienteIdcli}" title="#{vista.ViewVentaEntradaTitle_clienteIdcli}"/>
+                        <h:outputText value="#{vista.ViewVentaEntradaLabel_peliculaIdpel}"/>
+                        <h:outputText value="#{ventaEntradaController.selected.peliculaIdpel}" title="#{vista.ViewVentaEntradaTitle_peliculaIdpel}"/>
+                        <h:outputText value="#{vista.ViewVentaEntradaLabel_personaIdper}"/>
+                        <h:outputText value="#{ventaEntradaController.selected.personaIdper}" title="#{vista.ViewVentaEntradaTitle_personaIdper}"/>
+                        <h:outputText value="#{vista.ViewVentaEntradaLabel_salaIdsal}"/>
+                        <h:outputText value="#{ventaEntradaController.selected.salaIdsal}" title="#{vista.ViewVentaEntradaTitle_salaIdsal}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{vista.Close}" onclick="VentaEntradaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

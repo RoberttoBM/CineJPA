@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PeliculaEditDlg" widgetVar="PeliculaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vista.EditPeliculaTitle}">
+            <h:form id="PeliculaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{peliculaController.selected != null}">
+                        <p:outputLabel value="#{vista.EditPeliculaLabel_nompel}" for="nompel" />
+                        <p:inputText id="nompel" value="#{peliculaController.selected.nompel}" title="#{vista.EditPeliculaTitle_nompel}" required="true" requiredMessage="#{vista.EditPeliculaRequiredMessage_nompel}"/>
+                        <p:outputLabel value="#{vista.EditPeliculaLabel_catpel}" for="catpel" />
+                        <p:inputText id="catpel" value="#{peliculaController.selected.catpel}" title="#{vista.EditPeliculaTitle_catpel}" required="true" requiredMessage="#{vista.EditPeliculaRequiredMessage_catpel}"/>
+                        <p:outputLabel value="#{vista.EditPeliculaLabel_fecest}" for="fecest" />
+                        <p:calendar id="fecest" pattern="MM/dd/yyyy HH:mm:ss" value="#{peliculaController.selected.fecest}" title="#{vista.EditPeliculaTitle_fecest}" required="true" requiredMessage="#{vista.EditPeliculaRequiredMessage_fecest}" showOn="button"/>
+                        <p:outputLabel value="#{vista.EditPeliculaLabel_apple}" for="apple" />
+                        <p:inputText id="apple" value="#{peliculaController.selected.apple}" title="#{vista.EditPeliculaTitle_apple}" required="true" requiredMessage="#{vista.EditPeliculaRequiredMessage_apple}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{peliculaController.update}" value="#{vista.Save}" update="display,:PeliculaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PeliculaEditDialog');"/>
+                    <p:commandButton value="#{vista.Cancel}" onclick="PeliculaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

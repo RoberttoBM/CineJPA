@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PersonaCreateDlg" widgetVar="PersonaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Nuevo Empleado">
+            <h:form id="PersonaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{personaController.selected != null}">
+                        <p:outputLabel value="Nombres:" for="nomper" />
+                        <p:inputText id="nomper" value="#{personaController.selected.nomper}" title="#{vista.CreatePersonaTitle_nomper}" required="true" requiredMessage="#{vista.CreatePersonaRequiredMessage_nomper}"/>
+                        <p:outputLabel value="Apellidos:" for="apeper" />
+                        <p:inputText id="apeper" value="#{personaController.selected.apeper}" title="#{vista.CreatePersonaTitle_apeper}" required="true" requiredMessage="#{vista.CreatePersonaRequiredMessage_apeper}"/>
+                        <p:outputLabel value="Nro de DNI:" for="dniper" />
+                        <p:inputText id="dniper" value="#{personaController.selected.dniper}" title="#{vista.CreatePersonaTitle_dniper}" required="true" requiredMessage="#{vista.CreatePersonaRequiredMessage_dniper}"/>
+                        <p:outputLabel value="Edad" for="edaper" />
+                        <p:inputText id="edaper" value="#{personaController.selected.edaper}" title="#{vista.CreatePersonaTitle_edaper}" required="true" requiredMessage="#{vista.CreatePersonaRequiredMessage_edaper}"/>
+                        <p:outputLabel value="Dirección" for="dirper" />
+                        <p:inputText id="dirper" value="#{personaController.selected.dirper}" title="#{vista.CreatePersonaTitle_dirper}" required="true" requiredMessage="#{vista.CreatePersonaRequiredMessage_dirper}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{personaController.create}" value="#{vista.Save}" update="display,:PersonaListForm:datalist,:growl" oncomplete="handleSubmit(args,'PersonaCreateDialog');"/>
+                    <p:commandButton value="#{vista.Cancel}" onclick="PersonaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

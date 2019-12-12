@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VentaComboViewDlg" widgetVar="VentaComboViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vista.ViewVentaComboTitle}">
+            <h:form id="VentaComboViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ventaComboController.selected != null}">
+                        <h:outputText value="#{vista.ViewVentaComboLabel_idcom}"/>
+                        <h:outputText value="#{ventaComboController.selected.idcom}" title="#{vista.ViewVentaComboTitle_idcom}"/>
+                        <h:outputText value="#{vista.ViewVentaComboLabel_tipcom}"/>
+                        <h:outputText value="#{ventaComboController.selected.tipcom}" title="#{vista.ViewVentaComboTitle_tipcom}"/>
+                        <h:outputText value="#{vista.ViewVentaComboLabel_cancom}"/>
+                        <h:outputText value="#{ventaComboController.selected.cancom}" title="#{vista.ViewVentaComboTitle_cancom}"/>
+                        <h:outputText value="#{vista.ViewVentaComboLabel_importe}"/>
+                        <h:outputText value="#{ventaComboController.selected.importe}" title="#{vista.ViewVentaComboTitle_importe}"/>
+                        <h:outputText value="#{vista.ViewVentaComboLabel_fecvent}"/>
+                        <h:outputText value="#{ventaComboController.selected.fecvent}" title="#{vista.ViewVentaComboTitle_fecvent}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{vista.ViewVentaComboLabel_clienteIdcli}"/>
+                        <h:outputText value="#{ventaComboController.selected.clienteIdcli}" title="#{vista.ViewVentaComboTitle_clienteIdcli}"/>
+                        <h:outputText value="#{vista.ViewVentaComboLabel_personaIdper}"/>
+                        <h:outputText value="#{ventaComboController.selected.personaIdper}" title="#{vista.ViewVentaComboTitle_personaIdper}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{vista.Close}" onclick="VentaComboViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

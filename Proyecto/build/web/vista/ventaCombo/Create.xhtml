@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VentaComboCreateDlg" widgetVar="VentaComboCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vista.CreateVentaComboTitle}">
+            <h:form id="VentaComboCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ventaComboController.selected != null}">
+                        <p:outputLabel value="#{vista.CreateVentaComboLabel_tipcom}" for="tipcom" />
+                        <p:inputText id="tipcom" value="#{ventaComboController.selected.tipcom}" title="#{vista.CreateVentaComboTitle_tipcom}" required="true" requiredMessage="#{vista.CreateVentaComboRequiredMessage_tipcom}"/>
+                        <p:outputLabel value="#{vista.CreateVentaComboLabel_cancom}" for="cancom" />
+                        <p:inputText id="cancom" value="#{ventaComboController.selected.cancom}" title="#{vista.CreateVentaComboTitle_cancom}" required="true" requiredMessage="#{vista.CreateVentaComboRequiredMessage_cancom}"/>
+                        <p:outputLabel value="#{vista.CreateVentaComboLabel_importe}" for="importe" />
+                        <p:inputText id="importe" value="#{ventaComboController.selected.importe}" title="#{vista.CreateVentaComboTitle_importe}" required="true" requiredMessage="#{vista.CreateVentaComboRequiredMessage_importe}"/>
+                        <p:outputLabel value="#{vista.CreateVentaComboLabel_fecvent}" for="fecvent" />
+                        <p:calendar id="fecvent" pattern="MM/dd/yyyy HH:mm:ss" value="#{ventaComboController.selected.fecvent}" title="#{vista.EditVentaComboTitle_fecvent}"  showOn="button"/>
+                        <p:outputLabel value="#{vista.CreateVentaComboLabel_clienteIdcli}" for="clienteIdcli" />
+                        <p:selectOneMenu id="clienteIdcli" value="#{ventaComboController.selected.clienteIdcli}" required="true" requiredMessage="#{vista.EditVentaComboRequiredMessage_clienteIdcli}">
+                            <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
+                                           var="clienteIdcliItem"
+                                           itemValue="#{clienteIdcliItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{vista.CreateVentaComboLabel_personaIdper}" for="personaIdper" />
+                        <p:selectOneMenu id="personaIdper" value="#{ventaComboController.selected.personaIdper}" required="true" requiredMessage="#{vista.EditVentaComboRequiredMessage_personaIdper}">
+                            <f:selectItems value="#{personaController.itemsAvailableSelectOne}"
+                                           var="personaIdperItem"
+                                           itemValue="#{personaIdperItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ventaComboController.create}" value="#{vista.Save}" update="display,:VentaComboListForm:datalist,:growl" oncomplete="handleSubmit(args,'VentaComboCreateDialog');"/>
+                    <p:commandButton value="#{vista.Cancel}" onclick="VentaComboCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

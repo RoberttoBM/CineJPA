@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SalaEditDlg" widgetVar="SalaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{vista.EditSalaTitle}">
+            <h:form id="SalaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{salaController.selected != null}">
+                        <p:outputLabel value="#{vista.EditSalaLabel_idsal}" for="idsal" />
+                        <p:inputText id="idsal" value="#{salaController.selected.idsal}" title="#{vista.EditSalaTitle_idsal}" required="true" requiredMessage="#{vista.EditSalaRequiredMessage_idsal}"/>
+                        <p:outputLabel value="#{vista.EditSalaLabel_numsal}" for="numsal" />
+                        <p:inputText id="numsal" value="#{salaController.selected.numsal}" title="#{vista.EditSalaTitle_numsal}" required="true" requiredMessage="#{vista.EditSalaRequiredMessage_numsal}"/>
+                        <p:outputLabel value="#{vista.EditSalaLabel_capsal}" for="capsal" />
+                        <p:inputText id="capsal" value="#{salaController.selected.capsal}" title="#{vista.EditSalaTitle_capsal}" required="true" requiredMessage="#{vista.EditSalaRequiredMessage_capsal}"/>
+                        <p:outputLabel value="#{vista.EditSalaLabel_estsal}" for="estsal" />
+                        <p:inputText id="estsal" value="#{salaController.selected.estsal}" title="#{vista.EditSalaTitle_estsal}" required="true" requiredMessage="#{vista.EditSalaRequiredMessage_estsal}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{salaController.update}" value="#{vista.Save}" update="display,:SalaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SalaEditDialog');"/>
+                    <p:commandButton value="#{vista.Cancel}" onclick="SalaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
